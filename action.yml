@@ -1,0 +1,20 @@
+name: test-actions
+description: Test custom GitHub Action
+author: pgleska
+
+# Define your inputs here.
+inputs:
+  host:
+    description: RDepot host
+    required: true
+  token:
+    description: RDepot access token
+    required: true
+
+runs:
+  using: docker
+  image: openanalytics/rdepot-cli:2.1.1
+  entrypoint: entrypoint.sh
+  env:
+    RDEPOT_HOST: ${{ inputs.host }}
+    RDEPOT_TOKEN: ${{ inputs.token }}
