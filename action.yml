@@ -14,7 +14,7 @@ inputs:
 runs:
   using: docker
   image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latest
-  entrypoint: "echo '123213'"
+  entrypoint: "/bin/sh -c 'echo 1231'"
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
