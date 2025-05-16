@@ -14,7 +14,9 @@ inputs:
 runs:
   using: docker
   image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latest
-  entrypoint: "/github/workspace/entrypoint.sh"
+  # entrypoint: "/github/workspace/entrypoint.sh"
+  args:
+    - submit
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
