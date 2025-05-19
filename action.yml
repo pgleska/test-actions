@@ -9,7 +9,7 @@ inputs:
     required: true
   username:
     description: RDepot username
-    required: true
+    required: false
   token:
     description: RDepot access token
     required: true
