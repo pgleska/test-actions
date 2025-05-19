@@ -10,13 +10,28 @@ inputs:
   token:
     description: RDepot access token
     required: true
+  file:
+    description: File to be uploaded
+    required: true
+  repository-name:
+    description: Repository name
+    required: true
+  replace-flag:
+    description: Value of replace flag
+    required: false
+    default: "false"
 
 runs:
   using: docker
-  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latest
-  # entrypoint: "/github/workspace/entrypoint.sh"
+  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latests
   args:
+    - packages
     - submit
+    - -f
+    - ${{ inputs.file }}
+    - repo
+    - ${{ inputs.repository-name }}
+    - -replace=${{ inputs.replace-flag }}
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
