@@ -23,7 +23,7 @@ inputs:
 
 runs:
   using: docker
-  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latests
+  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latest
   args:
     - packages
     - submit
