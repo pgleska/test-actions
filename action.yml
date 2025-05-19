@@ -7,6 +7,9 @@ inputs:
   host:
     description: RDepot host
     required: true
+  username:
+    description: RDepot username
+    required: true
   token:
     description: RDepot access token
     required: true
@@ -29,9 +32,9 @@ runs:
     - submit
     - -f
     - ${{ inputs.file }}
-    - repo
+    - --repo
     - ${{ inputs.repository-name }}
-    - -replace=${{ inputs.replace-flag }}
+    - --replace=${{ inputs.replace-flag }}
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
