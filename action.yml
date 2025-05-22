@@ -2,39 +2,64 @@ name: test-actions
 description: Test custom GitHub Action
 author: pgleska
 
-# Define your inputs here.
 inputs:
   host:
     description: RDepot host
     required: true
-  username:
-    description: RDepot username
-    required: false
   token:
     description: RDepot access token
     required: true
   file:
     description: File to be uploaded
     required: true
-  repository-name:
-    description: Repository name
+  repository:
+    description: Repository to upload to
     required: true
-  replace-flag:
-    description: Value of replace flag
+  replace:
+    description: Replace existing package version
     required: false
     default: "false"
+  strict:
+    description: Convert warnings into errors
+    required: false
+    default: "true"
+  generate-manual:
+    description: Generate a manual for the submitted package
+    required: false
+    default: "false"
+  notes:
+    description: Notes to be added to submission
+    required: false
+  binary:
+    description: Flag if it is a binary package
+    required: false
+    default: "false"
+  r-version:
+    description: R version for the binary package submission
+    required: false
+  architecture:
+    description: Architecture for the binary package submission
+    required: false
+  distribution:
+    description: Distribution for the binary package submission
+    required: false
 
 runs:
   using: docker
-  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:latest
+  image: docker://registry.openanalytics.eu/openanalytics/rdepot-cli:master
   args:
     - packages
     - submit
-    - -f
-    - ${{ inputs.file }}
-    - --repo
-    - ${{ inputs.repository-name }}
-    - --replace=${{ inputs.replace-flag }}
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
+    RDEPOT_PACKAGES_SUBMIT_FILE: ${{ inputs.file }}
+    RDEPOT_PACKAGES_SUBMIT_REPO: ${{ inputs.repository }}
+    RDEPOT_PACKAGES_SUBMIT_REPLACE: ${{ inputs.replace }}
+    RDEPOT_PACKAGES_SUBMIT_STRICT: ${{ inputs.strict }}
+    RDEPOT_PACKAGES_SUBMIT_GENERATE_MANUAL: ${{ inputs.generate-manual }}
+    RDEPOT_PACKAGES_SUBMIT_NOTES: ${{ inputs.notes }}
+    RDEPOT_PACKAGES_SUBMIT_BINARY: ${{ inputs.binary }}
+    RDEPOT_PACKAGES_SUBMIT_RVER: ${{ inputs.r-version }}
+    RDEPOT_PACKAGES_SUBMIT_ARCH: ${{ inputs.architecture }}
+    RDEPOT_PACKAGES_SUBMIT_DIST: ${{ inputs.distribution }}
