@@ -9,6 +9,9 @@ inputs:
   token:
     description: RDepot access token
     required: true
+  technology:
+    description: Technology that will be used
+    required: false
   file:
     description: File to be uploaded
     required: true
@@ -53,6 +56,7 @@ runs:
   env:
     RDEPOT_HOST: ${{ inputs.host }}
     RDEPOT_TOKEN: ${{ inputs.token }}
+    RDEPOT_TECHNOLOGY: ${{ inputs.technology }}
     RDEPOT_PACKAGES_SUBMIT_FILE: ${{ inputs.file }}
     RDEPOT_PACKAGES_SUBMIT_REPO: ${{ inputs.repository }}
     RDEPOT_PACKAGES_SUBMIT_REPLACE: ${{ inputs.replace }}
